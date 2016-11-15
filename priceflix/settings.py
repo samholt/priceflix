@@ -38,6 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
+
+    # allauth deps
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +75,15 @@ TEMPLATES = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
 WSGI_APPLICATION = 'priceflix.wsgi.application'
 
 
@@ -75,38 +91,40 @@ WSGI_APPLICATION = 'priceflix.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            }
+        }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+        {
+            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+            },
+        {
+            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+            },
+        {
+            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+            },
+        {
+            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+            },
+        ]
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
+SITE_ID = 1
+
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 USE_I18N = True
 
