@@ -137,7 +137,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # all auth config
-SITE_ID = 1
+SITE_ID = 2
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 SOCIALACCOUNT_FORMS = {} #{‘signup’: ‘myapp.forms.SignupForm’}
