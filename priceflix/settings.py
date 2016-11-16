@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+
+    # django invitations
+    'invitations',
 ]
 
 MIDDLEWARE = [
@@ -148,3 +151,23 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 LOGIN_REDIRECT_URL = '/dashboard'
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_EMAIL_REQUIRED = True
+
+
+
+# django-invitations (more info: https://github.com/bee-keeper/django-invitations)
+ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
+INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
+INVITATIONS_INVITATION_ONLY = True
+INVITATIONS_GONE_ON_ACCEPT_ERROR = False
+INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP = True
+
+# dummy mail server (prints to console)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#email options relevant in production
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST = 'localhost'
+#EMAIL_HOST_PASSWORD = ""
+#EMAIL_HOST_USER = ""
+#EMAIL_PORT = '587'
+#EMAIL_USE_TLS = False
